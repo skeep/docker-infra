@@ -17,11 +17,11 @@ config.dev = process.env.NODE_ENV !== 'production';
 
 config.port = 80;
 
-var conurl = url.parse(process.env.DB_PORT);
+// var conurl = url.parse(process.env.DB_PORT);
 config.db = {
-  host     : conurl.hostname,
-  port     : 3307,
-  user     : 'mysql',
+  host     : 'db', // links creates a /etc/hosts entry that matches the compose
+  port     : 3306,
+  user     : 'root',
   password : 'mysql',
   database : 'appify'
 };
