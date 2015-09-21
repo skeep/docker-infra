@@ -3,19 +3,32 @@ web:
   volumes:
     - "./server/app:/src/app"
   ports:
-    - "3030:3000"
+    - "3000:3000"
   links:
     - db
+
+# db:
+#   build: "db"
+#   volumes:
+#     - "./db/data/:/var/lib/mysql"
+#   environment:
+#     MYSQL_DATABASE: appify
+#     MYSQL_USER: mysql
+#     MYSQL_PASSWORD: mysql
+#     MYSQL_ROOT_PASSWORD: supersecret 
+#   expose:
+#     - "3306"
+#   ports:
+#     - "3307:3306"
+
 db:
-  build: "db"
-  volumes:
-    - "./db/data/:/var/lib/mysql"
+  image: mysql
+  ports:
+    - "3306:3306"
   environment:
+    MYSQL_ROOT_PASSWORD: mysql
     MYSQL_DATABASE: appify
-    MYSQL_USER: mysql
-    MYSQL_PASSWORD: mysql
-    MYSQL_ROOT_PASSWORD: supersecret 
+  volumes:
+    - "/db/data/:/var/lib/mysql"
   expose:
     - "3306"
-  ports:
-    - "3307:3306"
